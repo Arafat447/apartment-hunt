@@ -1,0 +1,9 @@
+@import '../../styles/variables';
+
+.btn-custom{
+    background-color: #275A53!important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+    color: $hover-color!important;
+}
