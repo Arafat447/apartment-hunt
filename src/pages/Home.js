@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header/Header';
 import HomeBanner from '../components/HomeBanner/HomeBanner';
+import HouseList from '../components/HouseList/HouseList';
 
 const Home = () => {
 
@@ -10,6 +11,7 @@ const Home = () => {
         <>
           <Header />  
           <HomeBanner />
+          <HouseList />
         </>
     );
 };
