@@ -14,23 +14,18 @@ const Login = () => {
                     {newUser &&<h2 className="mb-3" >Create an account</h2>}
                     <form className="mt-5">
                       { newUser && <div className="form-group">
-                            <label for="">First Name</label>
                             <input name="first-name"  type="text" className="form-control" id=""  required placeholder="Enter your first name" />
                         </div>}
                        { newUser && <div className="form-group">
-                            <label for="">Last Name</label>
                             <input name="last-name"  type="text" className="form-control" id=""  required placeholder="Enter your last name" />
                         </div>}
                         <div className="form-group">
-                            <label for="">Email address</label>
                             <input name="email"  type="email" className="form-control" id=""  required placeholder="Enter email" />
                         </div>
                         <div className="form-group">
-                            <label for="">Password</label>
                             <input name="password" type="password" className="form-control" id=""  required placeholder="Password" />
                         </div>
                         {newUser && <div className="form-group">
-                            <label for="">Confirm Password</label>
                             <input name="confirm-password" type="password" className="form-control" id=""  required placeholder="Confirm Password" />
                         </div>}
                         {!newUser &&<div className="d-flex justify-content-between my-2" >
