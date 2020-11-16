@@ -3,7 +3,7 @@ import './HomeBanner.scss'
 
 const HomeBanner = () => {
     return (
-        <div className='homebanner-section'>
+        <div className='homebanner-section mb-3'>
             <div class="layer d-flex align-items-center justify-content-center flex-column">
                 <div>
                     <h1 className='text-white mb-4'>
