@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import HomeBanner from '../components/HomeBanner/HomeBanner';
 import HouseList from '../components/HouseList/HouseList';
@@ -14,6 +15,7 @@ const Home = () => {
           <HomeBanner />
           <HouseList />
           <Service />
+          <Footer />
         </>
     );
 };
