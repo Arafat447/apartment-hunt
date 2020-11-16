@@ -13,7 +13,7 @@ const HouseList = () => {
     })
 
     return (
-        <div className='container'>
+        <div className='container mb-5 pb-3'>
             <div className='house-gallery-intro d-flex align-items-center flex-column'>
                 <p>House Rent</p>
                 <h3 className='mb-5 text-center font-weight-bold'>

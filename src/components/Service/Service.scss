@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.text-color {
+    color: $text-color !important;
+}
+
+.p-custom {
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.15%;
+    color: $p-color;
+}
