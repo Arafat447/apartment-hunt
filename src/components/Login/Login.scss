@@ -1,5 +1,5 @@
 .login-container {
-    width: 600px;
+    width: 500px;
     padding-bottom: 30px;
 }
 .sign-btn img {
@@ -13,9 +13,16 @@
     margin-bottom: 10px;
 }
 .form-container {
-    border : 1px solid #000;
-    padding : 15px;
+    border : 1px solid lightgray;
+    padding : 25px !important;
     margin-bottom : 15px ;
+    border-radius : 5px;
+    background-color: #fff !important;
+}
+.form-control {
+    border:none !important;
+    border-bottom: 2px solid #ced4da !important;
+    margin-bottom: 10px;
 }
 hr {
     border-top: 2px solid #ddd;
@@ -29,3 +36,6 @@ hr {
 .login-link {
     color:#275A53;
 }
+::placeholder {
+    color: #000 !important;
+  }
