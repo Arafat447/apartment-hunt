@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <div className='bg-footer'>
             <div className='footer container py-5'>
-                <div className="row">
+                <div className="row d-flex justify-content-between">
                     <div className="col-md-4">
                         <p className='text-white'>
                             <img
