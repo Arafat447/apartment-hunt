@@ -28,7 +28,7 @@ const Login = () => {
                             <input name="email" ref={register({ required: true })} type="text" className="form-control" id="" placeholder="Enter your email" />
                             {errors.email && <span>This field is required</span>}
                         </div>
-                         <div className="form-group">
+                        <div className="form-group">
                             <input name="password" ref={register({ required: true })} type="password" className="form-control" id="" placeholder="Password" />
                             {errors.password && <span>This field is required</span>}
                         </div>
@@ -36,7 +36,7 @@ const Login = () => {
                             <input name="password" ref={register({ required: true })} type="password" className="form-control" id="" placeholder="Confirm password" />
                             {errors.password && <span>This field is required</span>}
                         </div>}
-                        {!newUser &&<div className="d-flex justify-content-between my-2" >
+                        {!newUser && <div className="d-flex justify-content-between my-2" >
                             <div className="form-check">
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                 <label className="form-check-label" for="">Remember me</label>
@@ -45,8 +45,8 @@ const Login = () => {
                                 <a href="/" className="login-link">Forget  password</a>
                             </div>
                         </div>}
-                        {!newUser &&<input type="submit" value="Login" className="btn btn-custom text-white  mt-3 d-block w-75 mx-auto "/>}
-                        {newUser &&<input type="submit" value="Create an account" className="btn btn-custom text-white  mt-3 d-block w-75 mx-auto "/>}
+                        {!newUser && <input type="submit" value="Login" className="btn btn-custom text-white  mt-3 d-block w-75 mx-auto " />}
+                        {newUser && <input type="submit" value="Create an account" className="btn btn-custom text-white  mt-3 d-block w-75 mx-auto " />}
                     </form>
 
                     {!newUser && <div className="d-flex justify-content-center mt-3" >

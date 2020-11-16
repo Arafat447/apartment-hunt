@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <div className="bg-light">
             <nav className="navbar navbar-expand-lg navbar-light container py-3">
-                <Link className="navbar-brand">
+                <Link to='/' className="navbar-brand">
                     <img height="50px" src={brandImg} alt="brand-img" />
                 </Link>
                 <button className="navbar-toggler"
@@ -49,7 +49,7 @@ const Header = () => {
                             <Link className={navClass}>Contact</Link>
                         </li>
                         <li className="nav-item">
-                            <Link
+                            <Link to='/login'
                                 className="btn text-white btn-custom px-4 py-2"
                             >
                                 Login
