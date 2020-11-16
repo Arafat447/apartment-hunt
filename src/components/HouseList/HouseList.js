@@ -4,13 +4,11 @@ import House from '../House/House';
 const HouseList = () => {
     const [houses, setHouses] = useState([])
 
-    console.log(houses);
-
     useEffect(() => {
         fetch('https://apartment-hunt-scic.herokuapp.com/houses')
         .then(res => res.json())
         .then(data => setHouses(data));
-    })
+    }, [houses])
 
     return (
         <div className='container mb-5 pb-3'>

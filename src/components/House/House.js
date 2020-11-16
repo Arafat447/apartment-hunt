@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import bed from '../../images/logos/bed.png'
 import bath from '../../images/logos/bath.png'
 import location from '../../images/logos/location.png'
+import { Link, useHistory } from 'react-router-dom';
+import { SelectedHouseContext } from '../../App';
 
 const House = ({ house }) => {
-    console.log(house);
+    const history = useHistory();
+    const [selectedHouse, setSelectedHouse] = useContext(SelectedHouseContext)
+
+    const handleViewDetails = (house) => {
+        history.push(`/house/${house.name}`)
+        setSelectedHouse(house)
+    }
+
     return (
         <div className='col-md-4 card-group mb-4'>
             <div class="card">
@@ -42,11 +51,11 @@ const House = ({ house }) => {
                             style={{ color: '#275A53' }}
                             className='font-weight-bold'
                         >${house.price}</h2>
-                        <button
+                        <Link onClick={() => handleViewDetails(house)}
                             className='btn btn-custom text-white px-4 py-2'
                         >
                             View Details
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
