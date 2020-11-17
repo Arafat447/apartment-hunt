@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
 import brandImg from '../../images/logos/Logo.png'
 import './Header.scss'
 
@@ -11,6 +12,18 @@ const Header = () => {
     btn-outline-dark
     rounded`;
 
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    let history = useHistory();
+
+    const handleLoginBtn = () => {
+        if (loggedInUser.email) {
+            setLoggedInUser({})
+            history.push('/home')
+        } else {
+            history.push('/login')
+        }
+    }
+    
     return (
         <div className="bg-light">
             <nav className="navbar navbar-expand-lg navbar-light container py-3">
@@ -49,11 +62,11 @@ const Header = () => {
                             <Link className={navClass}>Contact</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/login'
+                            <button onClick={handleLoginBtn}
                                 className="btn text-white btn-custom px-4 py-2"
                             >
-                                Login
-                            </Link>
+                                {loggedInUser.isSignedIn ? `${loggedInUser.name.split(' ')[0]}` : 'Login'}
+                            </button>
                         </li>
                     </ul>
                 </div>
