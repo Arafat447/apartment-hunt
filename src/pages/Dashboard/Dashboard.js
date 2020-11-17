@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        fetch('https://creative-agency-as.herokuapp.com/isAdmin?email=' + loggedInUser.email)
+        fetch('https://apartment-hunt-scic.herokuapp.com/isAdmin?email=' + loggedInUser.email)
             .then(res => res.json())
             .then(data => {
                 if (data) {

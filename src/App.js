@@ -11,6 +11,7 @@ import { createContext } from 'react';
 import useLocalStorageState from 'use-local-storage-state/dist';
 import Dashboard from './pages/Dashboard/Dashboard';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import NoMatch from './pages/NoMatch';
 
 export const SelectedHouseContext = createContext([]);
 export const UserContext = createContext([]);
@@ -43,6 +44,9 @@ function App() {
             </Route>
             <PrivateRoute path='/dashboard'>
               <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute path='*'>
+              <NoMatch />
             </PrivateRoute>
           </Switch>
         </Router>
