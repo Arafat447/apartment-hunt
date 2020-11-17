@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import House from '../House/House';
+import Preloader from '../Preloader/Preloader';
 
 const HouseList = () => {
     const [houses, setHouses] = useState([])
+    const [preloader, setPreloader] = useState(true)
 
     useEffect(() => {
         fetch('https://apartment-hunt-scic.herokuapp.com/houses')
         .then(res => res.json())
-        .then(data => setHouses(data));
+        .then(data => {
+            setHouses(data)
+            setPreloader(false)
+        });
     }, [houses])
 
     return (
@@ -21,6 +26,9 @@ const HouseList = () => {
             </div>
 
             <div className='row'>
+            {
+                preloader && <Preloader />
+            }
             {
                 houses.map(house => <House house={house} key={house._id}/>)
             }
