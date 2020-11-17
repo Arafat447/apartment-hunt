@@ -1,13 +1,76 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Header from '../Header/Header';
 import { useForm } from "react-hook-form";
 import './Login.scss'
+import firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from './firebase.config';
+import { UserContext } from '../../App';
 
 const Login = () => {
     const [newUser, setNewUser] = useState(false);
-    const { register, handleSubmit, watch, errors } = useForm();
-    const onSubmit = data => console.log(data);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const { register, handleSubmit, errors } = useForm();
+    const onSubmit = data => {
+        
+    };
+
+    let history = useHistory();
+    let location = useLocation();
+    let { from } = location.state || { from: { pathname: "/house" } };
+
+    if(firebase.apps.length === 0) {
+        firebase.initializeApp(firebaseConfig);
+    }
+
+    const handleFBSignIn = () => {
+        const fbProvider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(fbProvider)
+            .then(result => {
+                // The signed-in user info.
+                const { displayName, email, photoURL } = result.user;
+                const signedInUser = {
+                    isSignedIn: true,
+                    name: displayName,
+                    email: email,
+                    image: photoURL,
+                };
+                handleResponse(signedInUser, true)
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                console.log(error);
+            });
+    }
+
+    const handleGoogleSignIn = () => {
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(googleProvider)
+            .then(result => {
+                // The signed-in user info.
+                const { displayName, email, photoURL } = result.user;
+                const signedInUser = {
+                    isSignedIn: true,
+                    name: displayName,
+                    email: email,
+                    image: photoURL,
+                };
+                handleResponse(signedInUser, true);
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                console.log(error);
+            });
+    }
+
+    const handleResponse = (res, redirect) => {
+        setLoggedInUser(res);
+        if (redirect) {
+          history.replace(from);
+        }
+      }
+
     return (
         <div className="login-wrapper">
             <Header></Header>
@@ -17,23 +80,23 @@ const Login = () => {
                     {newUser && <h2 className="mb-3" >Create an account</h2>}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         {newUser && <div className="form-group">
-                            <input name="firstName" ref={register({ required: true })} type="text" className="form-control" id="" placeholder="Enter your first name" />
+                            <input name="firstName" ref={register({ required: true })} type="text" className="form-control" placeholder="Enter your first name" />
                             {errors.firstName && <span>This field is required</span>}
                         </div>}
                         {newUser && <div className="form-group">
-                            <input name="lastName" ref={register({ required: true })} type="text" className="form-control" id="" placeholder="Enter your last name" />
+                            <input name="lastName" ref={register({ required: true })} type="text" className="form-control" placeholder="Enter your last name" />
                             {errors.lastName && <span>This field is required</span>}
                         </div>}
                         <div className="form-group">
-                            <input name="email" ref={register({ required: true })} type="text" className="form-control" id="" placeholder="Enter your email" />
+                            <input name="email" ref={register({ required: true })} type="text" className="form-control" placeholder="Enter your email" />
                             {errors.email && <span>This field is required</span>}
                         </div>
                         <div className="form-group">
-                            <input name="password" ref={register({ required: true })} type="password" className="form-control" id="" placeholder="Password" />
+                            <input name="password" ref={register({ required: true })} type="password" className="form-control" placeholder="Password" />
                             {errors.password && <span>This field is required</span>}
                         </div>
                         {newUser && <div className="form-group">
-                            <input name="password" ref={register({ required: true })} type="password" className="form-control" id="" placeholder="Confirm password" />
+                            <input name="password" ref={register({ required: true })} type="password" className="form-control" placeholder="Confirm password" />
                             {errors.password && <span>This field is required</span>}
                         </div>}
                         {!newUser && <div className="d-flex justify-content-between my-2" >
@@ -59,11 +122,11 @@ const Login = () => {
                     </div>}
                 </div>
                 <div className="or-line d-flex justify-content-center" > <hr className="ml-auto" /> Or <hr className="mr-auto" /></div>
-                <button className="text-left d-flex sign-btn mx-auto align-items-center">
+                <button onClick={handleFBSignIn} className="text-left d-flex sign-btn mx-auto align-items-center">
                     <img className="m-1" src="https://i.imgur.com/hPkbIgr.png" alt="" />
                     <h6 className="m-2 mx-5" >Continue with facebook </h6>
                 </button>
-                <button className="text-left d-flex sign-btn mx-auto align-items-center">
+                <button onClick={handleGoogleSignIn} className="text-left d-flex sign-btn mx-auto align-items-center">
                     <img className="m-1" src="https://i.imgur.com/aneJZWX.png" alt="" />
                     <h6 className="m-2 mx-5" >Continue with google </h6>
                 </button>
