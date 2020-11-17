@@ -23,7 +23,7 @@ const Header = () => {
             history.push('/login')
         }
     }
-    
+
     return (
         <div className="bg-light">
             <nav className="navbar navbar-expand-lg navbar-light container py-3">
@@ -50,7 +50,7 @@ const Header = () => {
                             <Link className={navClass}>About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={navClass}>Service</Link>
+                            <Link to='/dashboard' className={navClass}>Service</Link>
                         </li>
                         <li className="nav-item">
                             <Link className={navClass}>Concerns</Link>
