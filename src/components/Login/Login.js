@@ -18,7 +18,9 @@ const Login = () => {
 
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/house" } };
+    
+
+    let { from } = location.state || { from: { pathname: "/dashboard" } };
 
     if(firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);

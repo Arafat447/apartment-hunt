@@ -10,6 +10,7 @@ import HouseDetails from './pages/HouseDetails/HouseDetails';
 import { createContext } from 'react';
 import useLocalStorageState from 'use-local-storage-state/dist';
 import Dashboard from './pages/Dashboard/Dashboard';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export const SelectedHouseContext = createContext([]);
 export const UserContext = createContext([]);
@@ -40,9 +41,9 @@ function App() {
             <Route path='/house'>
               <HouseDetails />
             </Route>
-            <Route path='/dashboard'>
+            <PrivateRoute path='/dashboard'>
               <Dashboard />
-            </Route>
+            </PrivateRoute>
           </Switch>
         </Router>
       </UserContext.Provider>
