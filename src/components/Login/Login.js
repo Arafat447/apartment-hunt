@@ -7,43 +7,46 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
+import { createUserWithEmailAndPassword, handleFbSignIn, signInWithEmailAndPassword } from './LoginManager';
+
 
 const Login = () => {
     const [newUser, setNewUser] = useState(false);
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const { register, handleSubmit, errors } = useForm();
-    const onSubmit = data => {
-        
-    };
 
     let history = useHistory();
     let location = useLocation();
-    
-
     let { from } = location.state || { from: { pathname: "/dashboard" } };
 
-    if(firebase.apps.length === 0) {
+    if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
 
+    const onSubmit = data => {
+        if (newUser && data.email && data.password) {
+            createUserWithEmailAndPassword(data.name, data.email, data.password)
+                .then((res, err) => {
+                    handleResponse(res, true);
+                    console.log(res);
+                })
+        }
+
+        if (!newUser && data.email && data.password) {
+            signInWithEmailAndPassword(data.email, data.password)
+                .then(res => {
+                    handleResponse(res, true);
+                    console.log(res);
+                })
+        }
+    };
+
     const handleFBSignIn = () => {
-        const fbProvider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(fbProvider)
-            .then(result => {
-                // The signed-in user info.
-                const { displayName, email, photoURL } = result.user;
-                const signedInUser = {
-                    isSignedIn: true,
-                    name: displayName,
-                    email: email,
-                    image: photoURL,
-                };
-                handleResponse(signedInUser, true)
+        handleFbSignIn()
+            .then(res => {
+                handleResponse(res, true);
+                console.log(res);
             })
-            .catch(function (error) {
-                // Handle Errors here.
-                console.log(error);
-            });
     }
 
     const handleGoogleSignIn = () => {
@@ -69,9 +72,9 @@ const Login = () => {
     const handleResponse = (res, redirect) => {
         setLoggedInUser(res);
         if (redirect) {
-          history.replace(from);
+            history.replace(from);
         }
-      }
+    }
 
     return (
         <div className="login-wrapper">
