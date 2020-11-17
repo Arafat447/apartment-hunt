@@ -13,7 +13,7 @@ const HouseList = () => {
             setHouses(data)
             setPreloader(false)
         });
-    }, [houses])
+    }, [])
 
     return (
         <div className='container mb-5 pb-3'>
