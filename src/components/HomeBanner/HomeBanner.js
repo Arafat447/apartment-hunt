@@ -14,7 +14,7 @@ const HomeBanner = () => {
                     <div className='col-8'>
                         <input
                             style={{ width: '303px' }}
-                            className='form-control'
+                            className='form-control mb-0'
                             type="text"
                             name="" />
                     </div>

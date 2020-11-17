@@ -2,13 +2,16 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
-import { UserContext } from '../../App';
+import { SelectedHouseContext, UserContext } from '../../App';
 import './BookingForm.scss'
 
 const BookingForm = () => {
     const { register, handleSubmit, errors } = useForm();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [selectedHouse, setSelectedHouse] = useContext(SelectedHouseContext);
     let history = useHistory();
+
+    const {name: house, price} = selectedHouse;
 
     const onSubmit = data => {
         console.log(data);
@@ -18,7 +21,7 @@ const BookingForm = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ ...data, status: 'pending' })
+                body: JSON.stringify({ ...data, status: 'pending', house, price})
             })
                 .then(res => res.json())
                 .then(data => {
@@ -31,7 +34,7 @@ const BookingForm = () => {
                     }
                 })
         } else {
-            history.push('/login')
+            history.push('/login');
         }
     };
 
@@ -39,7 +42,7 @@ const BookingForm = () => {
         <div className='bg-custom px-4 pt-5 pb-4 rounded'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
-                    <input name="name" ref={register({ required: true })} type="text" className="form-control p-4" placeholder="Full Name" />
+                    <input name="name" ref={register({ required: true })} type="text" className="form-control p-4" defaultValue={loggedInUser.name} placeholder="Full Name" />
                     {errors.name && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
@@ -47,7 +50,7 @@ const BookingForm = () => {
                     {errors.phone && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
-                    <input name="email" ref={register({ required: true })} type="text" className="form-control p-4" placeholder="Email Address" />
+                    <input name="email" ref={register({ required: true })} type="text" className="form-control p-4" defaultValue={loggedInUser.email} placeholder="Email Address" />
                     {errors.email && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
