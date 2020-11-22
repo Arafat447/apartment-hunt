@@ -2,9 +2,6 @@
 
 A single page web page where user can pick available service and place their order. a admin can review who can send a project and he can manage working status based how much work is done.
 
-## UI ScreenShot:
-<img src="https://i.ibb.co/kxMT0zd/apartment-hunt.png" alt="ui-screenshot"/>
-
 [Live Website](https://apartment-hunt-as.web.app/) | [Live API Server](https://apartment-hunt-scic.herokuapp.com/) 
 
 ### Features
@@ -26,3 +23,5 @@ A single page web page where user can pick available service and place their ord
 
 [Back-end Repository](https://github.com/basir5101/apartment-hunt-backend)
 
+## UI ScreenShot:
+<img src="https://i.ibb.co/kxMT0zd/apartment-hunt.png" alt="ui-screenshot"/>
