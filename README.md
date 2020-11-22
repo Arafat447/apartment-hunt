@@ -6,7 +6,7 @@ A single page web page where user can pick available service and place their ord
 
 ### Features
 * Full-Stack web app, you have hassle free google sign in method.
-*	An authenticated user can order his/her desired services from our web apps.
+*	An authenticated user can booking his/her desired house from our web apps.
 *	Admin Dashboard / User Dashboard. (Role Detection based on email)
 *	User can review our services if he satisfied.
 *	Admin can create new service and he can be monitoring placed order status.
