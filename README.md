@@ -1,6 +1,9 @@
-# Apartment Hunt
+# Creative Agency 
 
-A single page web application where user can book available house and place their order within few minutes. an admin can review booking and he can confirm anyone booking and can be monitoring whole system. Specified dashboard for user and admin. 
+A single page web page where user can pick available service and place their order. a admin can review who can send a project and he can manage working status based how much work is done.
+
+## UI ScreenShot:
+<img src="https://i.ibb.co/kxMT0zd/apartment-hunt.png" alt="ui-screenshot"/>
 
 [Live Website](https://apartment-hunt-as.web.app/) | [Live API Server](https://apartment-hunt-scic.herokuapp.com/) 
 
